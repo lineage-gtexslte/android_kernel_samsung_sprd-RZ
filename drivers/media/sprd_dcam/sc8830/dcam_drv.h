@@ -362,8 +362,6 @@ struct dcam_get_path_id {
 	uint32_t               fourcc;
 	uint32_t               is_path_work[DCAM_PATH_MAX];
 	uint32_t               need_isp_tool;
-	uint32_t               need_isp;
-	uint32_t               need_shrink;
 	struct dcam_size       input_size;
 	struct dcam_rect       input_trim;
 	struct dcam_size       output_size;

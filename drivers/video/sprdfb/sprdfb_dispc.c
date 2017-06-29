@@ -1463,7 +1463,7 @@ static int32_t sprdfb_dispc_resume(struct sprdfb_device *dev)
 
 		dev->enable = 1;
 		if(dev->panel->is_clean_lcd){
-			sprdfb_dispc_clean_lcd(dev);
+		sprdfb_dispc_clean_lcd(dev);
 		}
 
       sprdfb_panel_start(dev);
@@ -2444,4 +2444,5 @@ struct display_ctrl sprdfb_dispc_ctrl = {
 	.is_refresh_done = sprdfb_is_refresh_done,
 
 };
+
 

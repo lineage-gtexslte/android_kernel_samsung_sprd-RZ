@@ -99,9 +99,7 @@ struct sprd_img_parm {
 	uint32_t                  need_isp_tool;
 	uint32_t                  deci;
 	uint32_t                  shrink;
-	uint32_t                  camera_id;
 	uint32_t                  index;
-	uint32_t                  need_isp;
 	uint32_t                  is_reserved_buf;
 	struct sprd_img_rect      crop_rect;
 	struct sprd_img_size      dst_size;
@@ -163,7 +161,6 @@ struct sprd_img_path_info {
 	uint32_t               support_raw;
 	uint32_t               support_jpeg;
 	uint32_t               support_scaling;
-	uint32_t               support_trim;
 	uint32_t               is_scaleing_path;;
 };
 

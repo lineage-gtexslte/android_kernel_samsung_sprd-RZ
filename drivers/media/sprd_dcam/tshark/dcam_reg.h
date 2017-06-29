@@ -109,10 +109,6 @@
 #define PATH1_SLICE_O_VCNT                             (DCAM_BASE + 0x00A8UL)
 #define PATH2_SLICE_O_VCNT                             (DCAM_BASE + 0x00ACUL)
 
-#define DCAM_PATH0_TRIM_START                          (DCAM_BASE + 0x00B8UL)
-#define DCAM_PATH0_TRIM_SIZE                           (DCAM_BASE + 0x00BCUL)
-#define DCAM_FRM_ADDR12                                (DCAM_BASE + 0x00C0UL)
-
 #define CAP_CCIR_CTRL                                  (DCAM_BASE + 0x0100UL)
 #define CAP_CCIR_FRM_CTRL                              (DCAM_BASE + 0x0104UL)
 #define CAP_CCIR_START                                 (DCAM_BASE + 0x0108UL)

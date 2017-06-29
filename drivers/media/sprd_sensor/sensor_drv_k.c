@@ -2180,15 +2180,8 @@ LOCAL int _Sensor_K_SetTorch(uint32_t flash_mode)
 
 static ssize_t Rear_Cam_Sensor_ID(struct device *dev, struct device_attribute *attr, char *buf)
 {
-#if defined(CONFIG_MACH_GRANDPRIMEVE3G)
-	char fw_version[12]={0};
-	sensor_get_fw_version_otp(fw_version);
-	printk("%s : sensor id: %s", __func__, fw_version);
-	return sprintf(buf, "%s %s\n", fw_version, fw_version);
-#else
 	SENSOR_PRINT("Rear_Cam_Sensor_ID\n");
 	return sprintf(buf, REAR_SENSOR_NAME);
-#endif
 }
 
 #if defined(CONFIG_MACH_COREPRIMEVE3G)
@@ -2230,89 +2223,10 @@ static ssize_t S5K4ECGX_camera_antibanding_store(struct device *dev, struct devi
 #if defined(REAR_FULL_SENSOR_NAME)
 static ssize_t Rear_Cam_Full_Sensor_ID(struct device *dev, struct device_attribute *attr, char *buf)
 {
-#if defined(CONFIG_MACH_GRANDPRIMEVE3G)
-	char fw_version[12]={0};
-	sensor_get_fw_version_otp(fw_version);
-	printk("%s : sensor id: %s", __func__, fw_version);
-	return sprintf(buf, "%s %s %s\n", fw_version, fw_version, fw_version);
-#else
 	SENSOR_PRINT("Rear_Cam_Full_Sensor_ID\n");
 	return sprintf(buf, REAR_FULL_SENSOR_NAME);
-#endif
 }
 #endif
-
-static ssize_t Rear_camera_checkfw_factory(struct device *dev, struct device_attribute *attr, char *buf)
-{
-#if defined(CONFIG_MACH_GRANDPRIMEVE3G)
-	char cam_checkfw_factory[3]={0};
-	char fw_version[12]={0};
-	sensor_get_fw_version_otp(fw_version);
-
-	if(((fw_version[0]=='J') || (fw_version[0]=='L')) &&
-		(fw_version[1]=='0') &&
-		(fw_version[2]=='8') &&
-		(fw_version[3]=='P') &&
-		(fw_version[4]=='L') &&
-		(fw_version[5]=='I') &&
-		(fw_version[6]=='C') &&
-		(fw_version[7]=='0') &&
-		(fw_version[8]=='0')) {
-#if 1
-		if(fw_version[10]=='M')
-			sprintf(cam_checkfw_factory, "OK");
-		else
-			sprintf(cam_checkfw_factory, "NG_VER");
-#else
-		sprintf(cam_checkfw_factory, "OK");
-#endif
-	}
-	else {
-		sprintf(cam_checkfw_factory, "NG_VER");
-	}
-
-	printk("%s : %s", __func__, cam_checkfw_factory);
-	return sprintf(buf, "%s\n", cam_checkfw_factory);
-#else
-	return sprintf(buf, "%s\n", "OK");
-#endif
-}
-
-static ssize_t Rear_camera_checkfw_user(struct device *dev, struct device_attribute *attr, char *buf)
-{
-#if defined(CONFIG_MACH_GRANDPRIMEVE3G)
-	char cam_checkfw_user[3]={0};
-	char fw_version[12]={0};
-	sensor_get_fw_version_otp(fw_version);
-
-	if(((fw_version[0]=='J') || (fw_version[0]=='L')) &&
-		(fw_version[1]=='0') &&
-		(fw_version[2]=='8') &&
-		(fw_version[3]=='P') &&
-		(fw_version[4]=='L') &&
-		(fw_version[5]=='I') &&
-		(fw_version[6]=='C') &&
-		(fw_version[7]=='0') &&
-		(fw_version[8]=='0')) {
-#if 1
-		if(fw_version[10]=='M')
-			sprintf(cam_checkfw_user, "OK");
-		else
-			sprintf(cam_checkfw_user, "NG");
-#else
-		sprintf(cam_checkfw_factory, "OK");
-#endif
-	}
-	else {
-		sprintf(cam_checkfw_user, "NG");
-	}
-
-	printk("%s : %s", __func__, cam_checkfw_user);
-	return sprintf(buf, "%s\n", cam_checkfw_user);
-#else
-	return sprintf(buf, "%s\n", "OK");
-#endif
-}
 
 static ssize_t Rear_Cam_Sensor_TYPE(struct device *dev, struct device_attribute *attr, char *buf)
 {
@@ -2373,9 +2287,6 @@ static DEVICE_ATTR(rear_camfw, S_IRUGO | S_IXOTH, Rear_Cam_Sensor_ID, NULL); // 
 #if defined(REAR_FULL_SENSOR_NAME)
 static DEVICE_ATTR(rear_camfw_full, S_IRUGO | S_IXOTH, Rear_Cam_Full_Sensor_ID, NULL); // Read(User, Group, Other), Execute(Other)
 #endif
-
-static DEVICE_ATTR(rear_checkfw_factory, S_IRUGO | S_IXOTH, Rear_camera_checkfw_factory, NULL);
-static DEVICE_ATTR(rear_checkfw_user, S_IRUGO | S_IXOTH, Rear_camera_checkfw_user, NULL);
 
 static DEVICE_ATTR(rear_type, S_IRUGO | S_IXOTH, Rear_Cam_Sensor_TYPE, NULL); // Read(User, Group, Other), Execute(Other)
 static DEVICE_ATTR(rear_camtype, S_IRUGO | S_IXOTH, Rear_Cam_Sensor_TYPE, NULL); // Read(User, Group, Other), Execute(Other)
@@ -2461,20 +2372,6 @@ int __init sensor_k_init(void)
 		goto err_make_rear_camfw_full_file;
 	}
 #endif
-
-	err = device_create_file(dev_t_rear, &dev_attr_rear_checkfw_factory);
-	if(err)
-	{
-		SENSOR_PRINT("Failed to create device file(%s)!\n", dev_attr_rear_checkfw_factory.attr.name);
-		goto err_make_rear_checkfw_factory_file;
-	}
-
-	err = device_create_file(dev_t_rear, &dev_attr_rear_checkfw_user);
-	if(err)
-	{
-		SENSOR_PRINT("Failed to create device file(%s)!\n", dev_attr_rear_checkfw_user.attr.name);
-		goto err_make_rear_checkfw_user_file;
-	}
 
 	err = device_create_file(dev_t_rear, &dev_attr_rear_type);
 	if(err)
@@ -2584,10 +2481,6 @@ int __init sensor_k_init(void)
 	err_make_front_camtype_file:
 		device_remove_file(dev_t_front, &dev_attr_front_type);
 	err_make_front_type_file:
-		device_remove_file(dev_t_front, &dev_attr_rear_checkfw_user);
-	err_make_rear_checkfw_user_file:
-		device_remove_file(dev_t_front, &dev_attr_rear_checkfw_factory);
-	err_make_rear_checkfw_factory_file:
 #if defined(FRONT_FULL_SENSOR_NAME)
 		device_remove_file(dev_t_front, &dev_attr_front_camfw_full);
 	err_make_front_camfw_full_file:
