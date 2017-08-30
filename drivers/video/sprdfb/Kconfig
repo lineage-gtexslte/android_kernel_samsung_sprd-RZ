@@ -71,20 +71,87 @@ config FB_LCD_HX8389C_MIPI_GPRIMEVE3G
 	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
 	default n
 
-config FB_LCD_SD7798D_MIPI_COREPRIMELITE
-	boolean "support SD7798D coreprimelite MIPI panel"
+config FB_LCD_HX8369B_MIPI_SHARKLS_Z3LTE
+	boolean "support HX8369B sharkls_z3lte panel"
 	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
 	default n
+
+config FB_LCD_SD7798D_MIPI_SHARKLS_Z3LTE
+	boolean "support SD7798D sharkls_z3lte MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+	default n
+
+config FB_LCD_HX8369B_MIPI_SHARKL_J1POPLTE
+        boolean "support SD7798D sharkl_j1poplte MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
+config FB_LCD_HX8379C_MIPI_SHARKL_J1POPLTE
+        boolean "support HX8379C sharkl_j1poplte MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
+
+config FB_LCD_HX8369B_MIPI_SHARKLS_J1MINI
+        boolean "support SD7798D sharkls_j1mini MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
+config FB_LCD_HX8379C_MIPI_SHARKLS_J1MINI
+        boolean "support HX8379C sharkls_j1mini MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
+
+config FB_LCD_S6E8AA5X01_MIPI
+        boolean "support HX8379C sharkls_j1mini MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
+
+config FB_LCD_HX8369B_MIPI_SHARKLS_J3LTE
+        boolean "support SD7798D sharkls_j3lte MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
+config FB_LCD_HX8379C_MIPI_SHARKLS_J3LTE
+        boolean "support HX8379C sharkls_j3lte MIPI panel"
+        depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+        default n
 
 config FB_LCD_HX8369B_MIPI_COREPRIMELITE_MARLIN
 	boolean "support HX8369B coreprimelite_marlin MIPI panel"
 	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
 	default n
+	
+config FB_LCD_HX8369B_MIPI
+	boolean "support HX8369B MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G
+	default n
 
+config FB_LCD_HX8379C_MIPI
+	boolean "support HX8379C MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+	default n
+
+config FB_LCD_TSHARK2_J3_MIPI
+	boolean "support TSHARK2 J3 MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G
+	default n
+
+config FB_LCD_SD7798D_MIPI
+	boolean "support SD7798D MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G
+	default n
+
+config FB_LCD_GRANDNEO_MIPI
+	boolean "support GRAND NEO MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G
+	default n
+
+config FB_LCD_HX8389C_MIPI_GPRIMEVE3G
+	boolean "support HX8369C grandprimelite MIPI panel"
+	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
+	default n
 config FB_LCD_NT51017_MIPI
 	boolean "support TSHARK2 TABE MIPI panel"
 	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX30G2
 	default n
+
 config FB_LCD_SD7798D_MIPI_COREPRIMELITE
 	boolean "support SD7798D coreprimelite MIPI panel"
 	depends on FB_SC8825 || FB_SCX35 || FB_SCX30G || FB_SCX35L
